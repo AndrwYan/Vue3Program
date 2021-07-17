@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <ColumnList :list="list"></ColumnList>
+    <global-header :user="currentUser"></global-header>
+    <columnList :list="list"></columnList>
   </div>
 </template>
 
@@ -8,7 +9,12 @@
 import { defineComponent } from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ColumnList,{ColumnProps} from './components/ColumnList.vue';
+import GlobalHeader ,{UserProps} from './components/GlobaHeader.vue'
 
+const currentUser:UserProps={
+  isLogin: false,
+
+}
 const testData: ColumnProps[]=[
   {
     id: 1,
@@ -20,25 +26,40 @@ const testData: ColumnProps[]=[
     id: 2,
     title: 'fsafa',
     description: "nlscc",
-    avatar: 'http://',     
-  },  
+    avatar: 'http://fdsa',     
+  }, 
+  {
+    id: 3,
+    title: 'sdfw',
+    description: "物理专栏！",
+    avatar: 'http://dafa'
+  },
+  {
+    id: 4,
+    title: 'dfvcaa',
+    description: "vvacada",
+    avatar: 'http://www.baidu.com',
+  }
+  
 ]
 
 export default defineComponent({
   name: 'App',
   components:{
     ColumnList,
+    GlobalHeader,
   },
   setup(){
     return{
-      list: testData
+      list: testData,
+      currentUser
     }
   }
 
 });
 </script>
 
-//bootstrap中container的基础样式
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
