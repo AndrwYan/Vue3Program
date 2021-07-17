@@ -2,6 +2,7 @@
   <div class="container">
     <global-header :user="currentUser"></global-header>
     <columnList :list="list"></columnList>
+  
   </div>
 </template>
 
@@ -9,7 +10,8 @@
 import { defineComponent } from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ColumnList,{ColumnProps} from './components/ColumnList.vue';
-import GlobalHeader ,{UserProps} from './components/GlobaHeader.vue'
+import GlobalHeader ,{UserProps} from './components/GlobaHeader.vue';
+
 
 const currentUser:UserProps={
   isLogin: true,
@@ -48,6 +50,7 @@ export default defineComponent({
   components:{
     ColumnList,
     GlobalHeader,
+
   },
   setup(){
     return{
