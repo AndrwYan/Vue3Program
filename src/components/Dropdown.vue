@@ -21,17 +21,13 @@ export default defineComponent({
   },
 
   setup(){
-
     const isOpen=ref(false)
-
     //由于setup中不能使用ref所以新建一个ref对象
     //获取dom节点
     const dropdownRef = ref<null | HTMLElement>(null)
-
     const toggleOpen = () => {
       isOpen.value=!isOpen.value
     }
-
     //dropdown的点击事件的处理函数
     //关闭下拉菜单的逻辑判断
     //(点下拉菜单本身不会关闭，但是点击下拉菜单之外的其他元素就会关闭下拉菜单)
@@ -45,11 +41,9 @@ export default defineComponent({
     onMounted(()=>{
       document.addEventListener('click',handler)
     })
-
     onUnmounted(()=>{
       document.removeEventListener('click',handler)
     })
-
     return {
       isOpen,
       toggleOpen,
