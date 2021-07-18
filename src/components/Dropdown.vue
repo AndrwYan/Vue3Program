@@ -8,8 +8,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,ref,onMounted,onUnmounted } from "@vue/runtime-core";
+import { defineComponent,ref,watch } from "@vue/runtime-core";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import useClickOutside from '../hooks/useClickOutside';
 
 export default defineComponent({
   name: 'Dropdown',
@@ -20,6 +21,7 @@ export default defineComponent({
     }
   },
 
+  
   setup(){
     const isOpen=ref(false)
     //由于setup中不能使用ref所以新建一个ref对象
@@ -31,18 +33,11 @@ export default defineComponent({
     //dropdown的点击事件的处理函数
     //关闭下拉菜单的逻辑判断
     //(点下拉菜单本身不会关闭，但是点击下拉菜单之外的其他元素就会关闭下拉菜单)
-    const handler=(e: MouseEvent)=>{
-      if(dropdownRef.value){
-        if(!dropdownRef.value.contains(e.target as HTMLElement) && isOpen.value){
-          isOpen.value=false
-        }
-      }
+    const isClickOutside = useClickOutside(dropdownRef)
+    watch(isClickOutside,()=>{
+      if(isOpen.value && isClickOutside.value){
+      isOpen.value=false
     }
-    onMounted(()=>{
-      document.addEventListener('click',handler)
-    })
-    onUnmounted(()=>{
-      document.removeEventListener('click',handler)
     })
     return {
       isOpen,
