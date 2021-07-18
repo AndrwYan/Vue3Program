@@ -21,7 +21,7 @@ export default defineComponent({
     }
   },
 
-  
+
   setup(){
     const isOpen=ref(false)
     //由于setup中不能使用ref所以新建一个ref对象
@@ -34,6 +34,7 @@ export default defineComponent({
     //关闭下拉菜单的逻辑判断
     //(点下拉菜单本身不会关闭，但是点击下拉菜单之外的其他元素就会关闭下拉菜单)
     const isClickOutside = useClickOutside(dropdownRef)
+    //watch检测响应式变量的变化。
     watch(isClickOutside,()=>{
       if(isOpen.value && isClickOutside.value){
       isOpen.value=false
